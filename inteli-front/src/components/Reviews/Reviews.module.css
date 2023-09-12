@@ -1,0 +1,12 @@
+.reviewsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loadingText {
+  color: #4b4b4b;
+  font-size: 1.1rem;
+}

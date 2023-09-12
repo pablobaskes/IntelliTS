@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./inteli-front
+    ports:
+      - "5173:5173"
+
+  nodeapi:
+    build: ./server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+  pythonapi:
+    build: ./pyserver
+    ports:
+      - "8000:8000"
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
