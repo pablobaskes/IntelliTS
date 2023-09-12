@@ -13,8 +13,6 @@ async function getMoviesFromUrl(
   imageSize: string = IMAGE_BASE_URLw185
 ): Promise<{ movies: Movie[]; total_pages: number }> {
   try {
-    console.log("TMDB_TOKEN:", TMDB_TOKEN);
-
     const res = await axios.get(`${BASE_URL}${endpoint}`, {
       params,
       headers: {
