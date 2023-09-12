@@ -8,7 +8,8 @@ Docker Compose
 # Getting Started
 1. git clone https://github.com/pablobaskes/IntelliTS.git
 2. cd IntelliTS
-3. Build and Run the Containers:
+3. Create a .env file for each subdirectory and fill it with the actual values
+4. Build and Run the Containers:
    docker-compose up --build
 
 Access the Services:
