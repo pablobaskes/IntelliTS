@@ -11,7 +11,7 @@ export const getUserById = async () => {
     const token = localStorage.getItem("jwt");
 
     if (!token) {
-      throw new Error("Token not found in local storage");
+      return null
     }
 
     const decodedToken: DecodedToken = jwtDecode(token);
@@ -52,3 +52,13 @@ export const postListItem = async (payload: ListItemPayload) => {
     console.error(error);
   }
 };
+export const createList = async (name: string, userId: string) => {
+  try {
+    await axios.post(LOCAL_BASE_URL + '/list', {
+      userId,
+      name
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}

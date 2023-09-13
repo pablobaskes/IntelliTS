@@ -18,8 +18,8 @@ const postListItem = async (req: Request, res: Response) => {
     res.send(listItem);
   } catch (e) {
     const error = e as Error;
-    if (error.message === 'List not found') {
-      return res.status(404).send({ error: 'List not found' });
+    if (error.message === 'Movie already exists in the list') {
+      return res.status(400).send({ error: 'Movie already exists in the list' });
     }
     handleHttp(res, "ERROR_CREATE_LIST_ITEM", error);
   }

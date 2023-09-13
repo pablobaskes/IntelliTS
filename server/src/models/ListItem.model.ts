@@ -11,7 +11,6 @@ const ListItemSchema = new Schema<ListItem>(
     movieId: {
       type: String,
       required: true,
-      unique: true,
     },
   },
   {

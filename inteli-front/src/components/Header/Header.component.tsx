@@ -1,6 +1,7 @@
 import styles from "./Header.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+    faRightToBracket,
     faSearch,
     faUser,
 } from '@fortawesome/free-solid-svg-icons'
@@ -60,6 +61,13 @@ export default function Header() {
                             <FontAwesomeIcon icon={faSearch} width="20" height="20" />
                         </button>
                         <Link to="/login">
+                            <FontAwesomeIcon
+                                icon={faRightToBracket}
+                                width="40px"
+                                className={styles.userIcon}
+                            />
+                        </Link>
+                        <Link to="/profile">
                             <FontAwesomeIcon
                                 icon={faUser}
                                 width="40px"

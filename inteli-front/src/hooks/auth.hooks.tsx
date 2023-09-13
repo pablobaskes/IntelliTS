@@ -63,14 +63,14 @@ export const useAuth = () => {
 
 
 export const useAxiosInterceptors = () => {
-    const [, setLocation] = useLocation();
+    
 
     axios.interceptors.response.use(
         response => response,
         error => {
             if (error.response && (error.response.status === 401 || error.response.status === 400)) {
                 localStorage.removeItem("jwt");
-                setLocation("/login");
+                
             }
             return Promise.reject(error);
         }
