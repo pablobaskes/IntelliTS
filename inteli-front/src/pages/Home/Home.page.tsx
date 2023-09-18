@@ -1,12 +1,14 @@
+import RecommendationsComponent from "../../components/RecommendedMovies/RecommendedMovies"
 import Slider from "../../components/Slider/Slider.component"
 
 const Home = () => {
-    const title = "{placeholder title}"
+    const title = "For Your Page"
+    
     return (
         <>
             <Slider></Slider>
-            <h1>Porque has visto: {title}</h1>
-            <section></section>
+            <h1>{title}</h1>
+            <RecommendationsComponent></RecommendationsComponent>
         </>
     )
 }

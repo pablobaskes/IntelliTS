@@ -1,6 +1,6 @@
+import mongoose from "mongoose";
 import { List } from "../interfaces/lists.interface";
 import { ListModel } from "../models/List.model";
-
 
 const insertList = async (list: Partial<List>) => {
   const newList = await ListModel.create(list);
@@ -22,7 +22,6 @@ const getAllListsOfUser = async (userId: string) => {
   return lists;
 };
 
-
 const getListById = async (id: string) => {
   const list = await ListModel.findById(id);
   return list;
@@ -40,6 +39,14 @@ const deleteListById = async (id: string) => {
   return deleteResult;
 };
 
+const getFavoriteListForUser = async (userId: string) => {
+  const userFavoriteList = await ListModel.findOne({
+    name: "Favorite Movies",
+    userId,
+  });
+  return userFavoriteList;
+};
+
 export {
   insertList,
   deleteAllLists,
@@ -47,5 +54,6 @@ export {
   getListById,
   updateListById,
   deleteListById,
-  getAllListsOfUser
+  getAllListsOfUser,
+  getFavoriteListForUser
 };

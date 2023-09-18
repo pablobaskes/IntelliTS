@@ -19,7 +19,7 @@ const Details = () => {
     const [showAddToListDropdown, setShowAddToListDropdown] = useState(false);
     const [selectedListId, setSelectedListId] = useState<string | undefined>(undefined);
     const [userLists, setUserLists] = useState<List[]>([]);
-    
+
     const fetchReviews = useCallback(async () => {
         if (movie) {
             const fetchedReviews = await getReviews(movie.id.toString());
@@ -82,7 +82,7 @@ const Details = () => {
     const handleAddToList = async () => {
         if (movie && selectedListId) {
             await postListItem({ listId: selectedListId, movieId: movie.id.toString() });
-            setShowAddToListDropdown(false); 
+            setShowAddToListDropdown(false);
         }
     };
 
@@ -90,11 +90,11 @@ const Details = () => {
         <div className={styles.detailsContainer}>
             <h2>{movie?.title}</h2>
             <img src={movie?.poster_path} alt={movie?.title} />
-            
+
             <button className='btn btn-secondary' onClick={() => setShowAddToListDropdown(!showAddToListDropdown)}>
                 Add to list
             </button>
-            {showAddToListDropdown && (
+            {showAddToListDropdown && userLists.length > 0 && (
                 <div>
                     <select className='form-select form-select-sm' value={selectedListId} onChange={(e) => setSelectedListId(e.target.value)}>
                         {userLists.map(list => (

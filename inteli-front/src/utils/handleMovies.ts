@@ -38,7 +38,8 @@ async function getMoviesFromUrl(
 
 async function getMovieDetailsByURL(
   endpoint: string,
-  params?: unknown
+  params?: unknown,
+  
 ): Promise<MovieDetails | undefined> {
   try {
     const res = await axios.get(`${BASE_URL}${endpoint}`, {

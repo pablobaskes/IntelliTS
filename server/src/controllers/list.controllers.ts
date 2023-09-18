@@ -5,10 +5,13 @@ import {
   deleteListById,
   getAllLists,
   getAllListsOfUser,
+  getFavoriteListForUser,
   getListById,
   insertList,
   updateListById,
 } from "../services/list.services";
+import { getAllListItemsOfList } from "../services/ListItem.services";
+import { ListItem } from "../interfaces/lists.interface";
 
 const postList = async (req: Request, res: Response) => {
   try {
@@ -58,7 +61,6 @@ const getUserLists = async (req: Request, res: Response) => {
   }
 };
 
-
 const updateList = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -80,4 +82,25 @@ const deleteList = async (req: Request, res: Response) => {
   }
 };
 
-export { postList, deleteLists, getLists, getList, updateList, deleteList, getUserLists };
+const getFavotiteListItems = async ( req: Request, res: Response) => {
+  const { userId } = req.params;
+  
+  const list = await getFavoriteListForUser(userId);
+  const listId = list?._id;
+  const favoriteItems: ListItem[] = await getAllListItemsOfList(listId);
+  const movieIds = favoriteItems.map((listItem) => {
+    return listItem.movieId;
+  });
+  res.send(movieIds)
+};
+
+export {
+  postList,
+  deleteLists,
+  getLists,
+  getList,
+  updateList,
+  deleteList,
+  getUserLists,
+  getFavotiteListItems,
+};

@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   deleteList,
   deleteLists,
+  getFavotiteListItems,
   getList,
   getLists,
   getUserLists,
@@ -18,5 +19,5 @@ router.post("/", postList);
 router.put("/:id", updateList);
 router.delete("/", deleteLists);
 router.delete("/:id", deleteList);
-
+router.get('/user/favs/:userId', getFavotiteListItems)
 export { router };

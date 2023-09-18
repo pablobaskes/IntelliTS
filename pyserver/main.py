@@ -1,15 +1,12 @@
+from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import pipeline
 from starlette.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-#from sentence_transformers import SentenceTransformer
-from dotenv import load_dotenv
-import os
+from Qdrant_IntelliTs import get_recommendations, insert_movie_into_qdrant
 
 app = FastAPI()
-load_dotenv()
-#openai.api_key = os.getenv('OPENAI_API_KEY')
 
 origins = [
     "http://localhost:3000",
@@ -28,6 +25,8 @@ nlp = pipeline('sentiment-analysis')
 
 class Item(BaseModel):
     text: str
+class RecommendationInput(BaseModel):
+    favorite_movie_ids: List[int]
 
 @app.post("/analyze_sentiment")
 async def analyze_sentiment(item: Item):
@@ -51,3 +50,17 @@ async def analyze_sentiment(item: Item):
         rating = 3
 
     return {"rating": rating, "label": label, "score": score}
+
+
+
+@app.post("/get_recommendations")
+async def generate_recommendations(data: RecommendationInput):
+    for movie_id in data.favorite_movie_ids:
+        insert_movie_into_qdrant(movie_id)
+
+    recommendations = get_recommendations(data.favorite_movie_ids)
+
+    output = [rec.payload for rec in recommendations]
+
+    return output
+
