@@ -1,0 +1,75 @@
+.filmCard {
+  margin: 5px;
+  padding: 20px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-blend-mode: color;
+  max-width: 270px;
+  height: 400.1px;
+  box-shadow: 10px 10px 10px #111;
+  transition: background-color 0.25s linear;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  background-size: cover;
+}
+
+.filmCard:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.filmCardTitle,
+.filmCardDescription,
+.filmCardInfos div,
+.filmCardRating,
+.filmCardImdbButton {
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.24s ease-in, opacity 0.3s linear;
+}
+
+.filmCard:hover .filmCardTitle,
+.filmCard:hover .filmCardDescription,
+.filmCard:hover .filmCardInfos div,
+.filmCard:hover .filmCardRating,
+.filmCard:hover .filmCardImdbButton {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.filmCardInfos {
+  display: grid;
+  grid-gap: 10px 0;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.infoHead {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.filmCardImdb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+  padding: 0 10px;
+}
+
+.filmCardImdbButton {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #ebba33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+}

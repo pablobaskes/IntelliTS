@@ -1,0 +1,250 @@
+.movieHeroMovieCard {
+  font: 14px/22px "Lato", Arial, sans-serif;
+  color: #a9a8a3;
+  padding: 40px 0;
+  width: 95%;
+}
+
+.movieHeroContainer {
+  margin: 0 auto;
+  width: 90%;
+  height: 640px;
+  background: #f0f0ed00;
+  border-radius: 5px;
+  position: relative;
+}
+
+.movieHeroHero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 342px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.movieHeroHero:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: transparent;
+
+  z-index: -1;
+  transform: skewY(-2.2deg);
+  transform-origin: 0 0;
+  -webkit-backface-visibility: hidden;
+}
+
+.movieHeroCover {
+  border-radius: 5px;
+  position: absolute;
+  top: 160px;
+  left: 40px;
+  z-index: 2;
+}
+
+.movieHeroDetails {
+ 
+  padding: 285px 0 0 280px;
+}
+
+.movieHeroTitle1 {
+  color: white;
+  font-size: 44px;
+  margin-bottom: 13px;
+  position: relative;
+}
+
+
+.movieHeroTitle2 {
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  
+}
+.movieHeroHero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25px; /* Ajusta la altura para controlar el tamaño del gradiente */
+  background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+  z-index: 3;
+}
+
+
+.movieHeroDescription {
+  margin-top: 10px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  padding: 20px; 
+  font-size: 16px;
+  line-height: 26px;
+  color: #b1b0ac;
+  background-color: #000000;
+}
+
+.movieHeroColumn1 {
+  padding: 0; 
+  width: 220px; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  margin-top: 110px;
+  margin-left: 20px;
+  color: #000000;
+}
+
+.movieHeroTag {
+  background: white;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin: 0; 
+  line-height: 1.5; 
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.movieHeroTag:hover {
+  background: #ddd;
+}
+
+.movieHeroColumn2 {
+  
+  padding-left: 20px;
+  width: calc(
+    100% - 240px
+  ); 
+}
+
+.movieHeroAvatars {
+  margin-top: 23px;
+}
+
+.movieHeroAvatars img {
+  padding-left: 30px;
+}
+
+.movieHeroAvatars img:hover {
+  opacity: 0.6;
+}
+
+.movieHeroAvatars a:hover {
+  text-decoration: none;
+}
+
+
+@media (max-width: 1200px) and (min-width: 480px) {
+  .movieHeroTitle1 {
+    font-size: 32px; /* Disminuir el tamaño de fuente */
+    line-height: 1.2; /* Aumentar el espacio entre líneas */
+    margin-bottom: 10px; /* Ajustar el margen inferior si es necesario */
+  }
+}
+@media (max-width: 768px) {
+  .movieHeroColumn1 {
+    margin-top: 60px; /* Ajustar según lo necesario */
+    margin-left: 10px;
+  }
+  .movieHeroMovieCard {
+    padding: 20px 0;
+  }
+
+  .movieHeroContainer {
+    width: 95%;
+    height: auto;
+  }
+
+  .movieHeroHero {
+    height: auto;
+  }
+
+  .movieHeroCover {
+    top: 80px;
+    left: 20px;
+  }
+
+  .movieHeroDetails {
+    padding: 140px 0 0 220px;
+  }
+
+  .movieHeroTitle1 {
+    font-size: 36px;
+  }
+
+  .movieHeroTitle2 {
+    font-size: 20px;
+  }
+
+  .movieHeroDescription {
+    flex-direction: column;
+    margin-left: 5px;
+    padding: 20px;
+  }
+
+  .movieHeroColumn1 {
+    margin-top: 90px;
+  }
+  .movieHeroColumn2 {
+    width: 100%;
+    padding-left: 20px;
+    float: none;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .movieHeroTitle1 {
+    display: none;
+  }
+  .movieHeroTitle2 {
+    display: none;
+  }
+  .movieHeroDescription {
+    margin-top: 220px;
+    margin-left: 5px;
+    padding: 20px;
+  }
+  .movieHeroColumn1 {
+    margin-top: 70px;
+  }
+  .movieHeroColumn2 {
+    margin-top: 20px;
+  }
+  .movieHeroMovieCard {
+    padding: 10px 0;
+  }
+
+  .movieHeroCover {
+    top: 40px;
+    left: 10px;
+    width: 60%;
+  }
+
+  .movieHeroDetails {
+    padding: 100px 0 0 140px;
+  }
+
+  .movieHeroTitle1 {
+    font-size: 28px;
+  }
+
+  .movieHeroTitle2 {
+    font-size: 18px;
+  }
+
+  .movieHeroTag {
+    font-size: 12px;
+  }
+}

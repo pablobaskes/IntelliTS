@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TMDB_TOKEN = os.getenv("TMDB_TOKEN")
 model = SentenceTransformer('all-mpnet-base-v2')
+#client = QdrantClient("http://localhost:6333")
 client = QdrantClient("http://qdrant:6333")
 
 MOVIES_COLLECTION = "IntelliTS_movies"
@@ -24,7 +25,7 @@ def create_qdrant_client():
 def model_embedder(movie):
     print("creating embedding for: " + movie['title'])
     text = movie['title'] + " " + movie['overview'] + " " + movie['original_language'] + " " + str(movie['vote_average']) + " " + str(movie['vote_count'])
-    embedding = model.encode(text) 
+    embedding = model.encode(text)
     return embedding.tolist()
 
 def get_movie_by_id(movie_id):
@@ -33,7 +34,7 @@ def get_movie_by_id(movie_id):
         "accept": "application/json",
         "Authorization": f"Bearer {TMDB_TOKEN}"
     }
-    
+
     response = requests.get(base_url, headers=headers)
     if response.status_code == 200:
         return response.json()
@@ -68,7 +69,7 @@ def insert_movie_into_qdrant(movie_id):
         if client.retrieve(
             collection_name=MOVIES_COLLECTION,
             ids=[movie['id']],
-            ): 
+            ):
             print('alrdy exists into qdrant db')
         else:
             embedding = model_embedder(movie)
@@ -95,7 +96,7 @@ def insert_movies_into_qdrant():
             points=models.Batch(
                 ids=[movie['id']],
                 vectors=[embedding],
-                payloads=[movie] 
+                payloads=[movie]
             )
         )
 
@@ -113,6 +114,6 @@ if os.path.exists("/app/data/data_initialized.txt"):
 else:
     create_qdrant_client()
     insert_movies_into_qdrant()
-    
+
     with open("/app/data/data_initialized.txt", "w") as file:
         file.write("Data initialized on " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

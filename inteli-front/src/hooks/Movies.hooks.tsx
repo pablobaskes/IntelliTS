@@ -9,7 +9,7 @@ import { getListsByUserId, getListItemsOfAList } from '../services/user.services
 import jwtDecode from 'jwt-decode';
 import { DecodedToken } from '../types/DecodedToken.interfaces';
 import axios from 'axios';
-import { IMAGE_BASE_URLw185, IMAGE_BASE_URLw342, IMAGE_BASE_URLw780, } from '../utils/settings';
+import { IMAGE_BASE_URLw342 } from '../utils/settings';
 
 interface SearchParams {
     keyword?: string;

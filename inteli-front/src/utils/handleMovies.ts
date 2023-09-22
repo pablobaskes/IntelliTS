@@ -4,7 +4,7 @@ import {
   MoviesResponse,
 } from "../types/tmdb/responses/Movies.interfaces";
 import { handleAxiosError } from "./handleAxiosError";
-import { BASE_URL, IMAGE_BASE_URLw185, TMDB_TOKEN } from "./settings";
+import { BASE_URL, IMAGE_BASE_URLw185, IMAGE_BASE_URLw780, TMDB_TOKEN } from "./settings";
 import { MovieDetails } from "../types/tmdb/responses/MovieDetails.interfaces";
 
 async function getMoviesFromUrl(
@@ -38,8 +38,7 @@ async function getMoviesFromUrl(
 
 async function getMovieDetailsByURL(
   endpoint: string,
-  params?: unknown,
-  
+  params?: unknown
 ): Promise<MovieDetails | undefined> {
   try {
     const res = await axios.get(`${BASE_URL}${endpoint}`, {
@@ -49,13 +48,16 @@ async function getMovieDetailsByURL(
       },
     });
     const movieDetails: MovieDetails = res.data;
-
+    const backdrop_path = movieDetails.backdrop_path
+      ? `${IMAGE_BASE_URLw780}${movieDetails.backdrop_path}`
+      : "https://via.placeholder.com/185x278.png?text=No+Image";
     const poster_path = movieDetails.poster_path
       ? `${IMAGE_BASE_URLw185}${movieDetails.poster_path}`
       : "https://via.placeholder.com/185x278.png?text=No+Image";
     return {
       ...movieDetails,
       poster_path,
+      backdrop_path,
     };
   } catch (error: unknown) {
     handleAxiosError(error);

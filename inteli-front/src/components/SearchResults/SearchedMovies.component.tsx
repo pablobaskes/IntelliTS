@@ -27,10 +27,15 @@ const SearchResults = () => {
         <div className={styles.resultsContainer}>
             {movies.map(movie => (
                 <div key={movie.id} className={styles.movieCard}>
+                    
                     <Movie
                         title={movie.title}
                         id={movie.id}
                         poster_path={movie.poster_path}
+                        description={movie.overview.substring(0, 40)}
+                        popularity={movie.popularity}
+                        rating={Math.round(movie.vote_average)}
+                        year={movie?.release_date ? movie.release_date.toString().substring(0, 4) : 'N/A'}
                     ></Movie>
                 </div>
             ))}
@@ -42,8 +47,8 @@ const SearchResults = () => {
 
                     if (piece.type === 'page-number') {
                         return (
-                            <button 
-                                key={index} 
+                            <button
+                                key={index}
                                 className={`btn btn-primary mx-2 ${piece.pageNumber === currentPage ? 'active' : ''}`}
                                 onClick={() => handlePageChange(piece.pageNumber)}
                             >
@@ -53,8 +58,8 @@ const SearchResults = () => {
                     }
 
                     return (
-                        <button 
-                            key={index} 
+                        <button
+                            key={index}
                             className="btn btn-primary mx-2"
                             onClick={() => handlePageChange(piece.pageNumber)}
                             disabled={piece.isDisabled}
